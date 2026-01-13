@@ -1,0 +1,67 @@
+﻿node.exe : open 
+supabase\.temp\profile: 
+The system cannot find 
+the file specified.
+At C:\Program 
+Files\nodejs\npx.ps1:29 
+char:3
++   & $NODE_EXE 
+$NPX_CLI_JS $args
++   ~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~
+    + CategoryInfo       
+       : NotSpecified:   
+  (open supabase\....f   
+ ile specified.:Strin    
+g) [], RemoteExcepti    
+on
+    + FullyQualifiedErro 
+   rId : NativeCommandE  
+  rror
+ 
+Using access token from 
+env var...
+Loading project ref from 
+file: supabase\.temp\proj
+ect-ref
+Supabase CLI 2.72.4
+Using profile: supabase 
+(supabase.co)
+WARNING: Docker is not 
+running
+Using access token from 
+env var...
+2026/01/12 15:19:38 HTTP 
+POST: https://api.supabas
+e.com/v1/projects/gdugovq
+kigplttcvmoqy/functions/d
+eploy?slug=send-reservati
+on-email
+Uploading asset (send-res
+ervation-email): supabase
+/functions/send-reservati
+on-email/index.ts
+Uploading asset (send-res
+ervation-email): supabase
+/functions/_shared/emails
+/ReservationEmail.tsx
+Uploading asset (send-res
+ervation-email): supabase
+/functions/_shared/emails
+/components/Layout.tsx
+unexpected deploy status 
+400: {"message":"Failed 
+to bundle the function 
+(reason: The module's 
+source code could not be 
+parsed: Expected '>', 
+got 'guestName' at file:/
+//tmp/user_fn_gdugovqkigp
+lttcvmoqy_cd2957fd-5e07-4
+b4b-961a-34233b8cfdb2_1/s
+ource/supabase/functions/
+send-reservation-email/in
+dex.ts:54:9\n\n          
+guestName={ 
+data.guestName }\n       
+   ~~~~~~~~~)."}

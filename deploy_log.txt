@@ -1,0 +1,26 @@
+﻿node.exe : WARNING: 
+Docker is not running
+At C:\Program Files\n
+odejs\npx.ps1:29 
+char:3
++   & $NODE_EXE 
+$NPX_CLI_JS $args
++   ~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: (WARNING   
+ : Docker is not     
+running:String)     
+[], RemoteExcept    
+ion
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+Uploading asset 
+(weather): supabase/f
+unctions/weather/inde
+x.ts
+Deployed Functions on project gdugovqkigplttcvmoqy: weather
+You can inspect your deployment in the Dashboard: https://supabase.com/dashboard/project/gdugovqkigplttcvmoqy/functions

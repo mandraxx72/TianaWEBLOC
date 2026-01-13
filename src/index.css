@@ -1,0 +1,193 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design system para Casa Tiana - Paleta terrosa e natural */
+
+@layer base {
+  :root {
+    --background: 40 20% 97%;
+    /* #F9F8F6 - Off-White Areia */
+    --foreground: 30 10% 15%;
+    /* #2A2624 - Carvão Quente */
+
+    --card: 0 0% 100%;
+    /* Branco puro */
+    --card-foreground: 30 20% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 30 20% 15%;
+
+    --primary: 33 25% 44%;
+    /* #8B7355 - Ouro Envelhecido */
+    --primary-foreground: 0 0% 100%;
+    /* Branco para contraste */
+
+    --secondary: 120 25% 65%;
+    /* Verde sálvia */
+    --secondary-foreground: 30 20% 15%;
+
+    --muted: 48 20% 90%;
+    /* Bege claro */
+    --muted-foreground: 30 15% 45%;
+
+    --accent: 35 60% 85%;
+    /* Pêssego suave */
+    --accent-foreground: 30 20% 15%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 48 15% 85%;
+    --input: 48 15% 85%;
+    --ring: 33 25% 44%;
+
+    --radius: 0.75rem;
+
+    /* Cores customizadas para Casa Tiana */
+    --nature-green: 120 35% 55%;
+    /* Verde natureza */
+    --warm-beige: 40 30% 88%;
+    /* Bege aconchegante */
+    --earth-brown: 30 15% 12%;
+    /* #221E1C - Espresso Profundo */
+    --sunset-orange: 33 25% 44%;
+    /* Alias para Ouro (substituindo terracota) */
+  }
+
+  .dark {
+    --background: 30 20% 8%;
+    --foreground: 48 20% 95%;
+    --card: 30 20% 10%;
+    --card-foreground: 48 20% 95%;
+    --popover: 30 20% 10%;
+    --popover-foreground: 48 20% 95%;
+    --primary: 33 25% 55%;
+    /* Ouro mais claro para Dark Mode */
+    --primary-foreground: 48 44% 96%;
+    --secondary: 120 25% 45%;
+    --secondary-foreground: 48 20% 95%;
+    --muted: 30 15% 15%;
+    --muted-foreground: 48 15% 65%;
+    --accent: 35 60% 25%;
+    --accent-foreground: 48 20% 95%;
+    --border: 30 15% 20%;
+    --input: 30 15% 20%;
+    --ring: 25 55% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-inter;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-playfair;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary) / 0.6);
+    border-radius: 5px;
+    border: 2px solid hsl(var(--background));
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--primary));
+  }
+}
+
+@layer utilities {
+  .bg-nature-green {
+    background-color: hsl(var(--nature-green));
+  }
+
+  /* Deprecated: .bg-warm-beige mapped to background */
+  .bg-warm-beige {
+    background-color: hsl(var(--background));
+  }
+
+  /* Footer uses earth-brown */
+  .bg-earth-brown {
+    background-color: hsl(var(--earth-brown));
+  }
+
+  /* Deprecated: .bg-sunset-orange mapped to primary if needed, but better to use bg-primary */
+  .bg-sunset-orange {
+    background-color: hsl(var(--primary));
+  }
+
+  .text-nature-green {
+    color: hsl(var(--nature-green));
+  }
+
+  .text-earth-brown {
+    color: hsl(var(--earth-brown));
+  }
+
+  /* Deprecated */
+  .text-sunset-orange {
+    color: hsl(var(--primary));
+  }
+
+  /* Gallery specific utilities */
+  .line-clamp-1 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+  }
+
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+}
+
+/* Gallery animations */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s ease-out forwards;
+  opacity: 0;
+}

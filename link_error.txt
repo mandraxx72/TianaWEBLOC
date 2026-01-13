@@ -1,0 +1,50 @@
+﻿node.exe : open supab
+ase\.temp\profile: 
+The system cannot 
+find the file 
+specified.
+At C:\Program Files\n
+odejs\npx.ps1:29 
+char:3
++   & $NODE_EXE 
+$NPX_CLI_JS $args
++   ~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: (open su   
+ pabase\....file     
+specified.:Strin    
+g) [], RemoteExc    
+eption
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+Supabase CLI 2.72.4
+Using profile: 
+supabase 
+(supabase.co)
+Loading project ref 
+from flag: 
+ukwhwdjytjaxhzsoshzo
+Using access token 
+from env var...
+2026/01/12 14:44:33 
+HTTP GET: https://api
+.supabase.com/v1/proj
+ects/ukwhwdjytjaxhzso
+shzo
+Unexpected error 
+retrieving remote 
+project status: 
+{"message":"Your 
+account does not 
+have the necessary 
+privileges to access 
+this endpoint. For 
+more details, refer 
+to our documentation 
+https://supabase.com/
+docs/guides/platform/
+access-control"}

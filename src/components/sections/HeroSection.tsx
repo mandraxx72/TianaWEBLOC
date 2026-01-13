@@ -66,7 +66,7 @@ const HeroSection = ({
             <div className="pt-8 flex flex-col sm:flex-row gap-4 justify-center items-center">
               <button
                 onClick={onBookingClick}
-                className="px-8 py-4 bg-primary hover:bg-primary/90 text-white rounded-full font-medium text-lg transition-all transform hover:scale-105 shadow-lg border-2 border-primary"
+                className="px-8 py-4 bg-gradient-to-r from-gold-start to-gold-end hover:opacity-95 text-white rounded-full font-medium text-lg transition-all transform hover:scale-105 shadow-glow border-none"
               >
                 {buttonText || "Reservar Agora"}
               </button>

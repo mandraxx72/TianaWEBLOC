@@ -1,5 +1,5 @@
 import * as React from 'npm:react@18.3.1';
-import { Section, Text, Row, Column, Heading, Button, Hr } from 'npm:@react-email/components@0.0.12';
+import { Section, Text, Row, Column, Heading, Button, Hr, Img } from 'npm:@react-email/components@0.0.12';
 import { Layout } from './components/Layout.tsx';
 
 interface ReservationEmailProps {
@@ -27,221 +27,493 @@ export const ReservationEmail = ({
 }: ReservationEmailProps) => {
     return (
         <Layout preview={`Confirmação de Reserva - ${reservationNumber}`}>
-            <Heading style={h1}>Olá, {guestName}! 🎉</Heading>
-            <Text style={text}>
-                A sua reserva foi confirmada com sucesso! Estamos muito felizes em recebê-lo(a) na Casa Tiana.
-                Aqui estão os detalhes da sua estadia.
+            {/* Success Badge */}
+            <Section style={successBadge}>
+                <Text style={successIcon}>✓</Text>
+                <Text style={successText}>Reserva Confirmada</Text>
+            </Section>
+
+            {/* Welcome Message */}
+            <Heading style={h1}>
+                Olá, {guestName}! 🌴
+            </Heading>
+            <Text style={welcomeText}>
+                A sua reserva foi confirmada com sucesso! Estamos muito felizes em
+                recebê-lo(a) na <strong>Casa Tiana</strong>. Prepare-se para uma
+                experiência inesquecível em Mindelo.
             </Text>
 
-            <Section style={box}>
-                <Text style={boxTitle}>Detalhes da Reserva</Text>
-                <Text style={reservationId}>#{reservationNumber}</Text>
+            {/* Reservation Number Card */}
+            <Section style={reservationCard}>
+                <Text style={reservationLabel}>Número da Reserva</Text>
+                <Text style={reservationNumber_style}>#{reservationNumber}</Text>
+            </Section>
 
-                <Hr style={divider} />
+            {/* Details Card */}
+            <Section style={detailsCard}>
+                <Text style={cardTitle}>
+                    <span style={cardTitleIcon}>🏨</span> Detalhes da Estadia
+                </Text>
 
-                <Row style={row}>
-                    <Column>
-                        <Text style={label}>Quarto</Text>
-                        <Text style={value}>{roomName}</Text>
-                    </Column>
-                </Row>
+                <Hr style={cardDivider} />
 
-                <Row style={row}>
-                    <Column>
-                        <Text style={label}>Check-in</Text>
-                        <Text style={value}>{checkIn}</Text>
-                        <Text style={subValue}>A partir das 14:00</Text>
-                    </Column>
-                    <Column>
-                        <Text style={label}>Check-out</Text>
-                        <Text style={value}>{checkOut}</Text>
-                        <Text style={subValue}>Até às 12:00</Text>
-                    </Column>
-                </Row>
+                {/* Room */}
+                <div style={detailRow}>
+                    <div style={detailIconContainer}>
+                        <Text style={detailIcon}>🛏️</Text>
+                    </div>
+                    <div style={detailContent}>
+                        <Text style={detailLabel}>Quarto</Text>
+                        <Text style={detailValue}>{roomName}</Text>
+                    </div>
+                </div>
 
-                <Row style={row}>
-                    <Column>
-                        <Text style={label}>Hóspedes</Text>
-                        <Text style={value}>{guests} {guests === 1 ? 'pessoa' : 'pessoas'}</Text>
-                    </Column>
-                    <Column>
-                        <Text style={label}>Duração</Text>
-                        <Text style={value}>{nights} {nights === 1 ? 'noite' : 'noites'}</Text>
-                    </Column>
-                </Row>
+                {/* Check-in / Check-out */}
+                <table width="100%" cellPadding="0" cellSpacing="0" style={{ marginBottom: '20px' }}>
+                    <tr>
+                        <td width="50%" style={{ verticalAlign: 'top', paddingRight: '10px' }}>
+                            <div style={dateCard}>
+                                <Text style={dateLabel}>
+                                    <span style={dateLabelIcon}>📅</span> Check-in
+                                </Text>
+                                <Text style={dateValue}>{checkIn}</Text>
+                                <Text style={dateTime}>A partir das 14:00</Text>
+                            </div>
+                        </td>
+                        <td width="50%" style={{ verticalAlign: 'top', paddingLeft: '10px' }}>
+                            <div style={dateCard}>
+                                <Text style={dateLabel}>
+                                    <span style={dateLabelIcon}>📅</span> Check-out
+                                </Text>
+                                <Text style={dateValue}>{checkOut}</Text>
+                                <Text style={dateTime}>Até às 12:00</Text>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
 
+                {/* Guests & Nights */}
+                <table width="100%" cellPadding="0" cellSpacing="0" style={{ marginBottom: '20px' }}>
+                    <tr>
+                        <td width="50%" style={{ verticalAlign: 'top', paddingRight: '10px' }}>
+                            <div style={miniCard}>
+                                <Text style={miniCardIcon}>👤</Text>
+                                <Text style={miniCardValue}>{guests}</Text>
+                                <Text style={miniCardLabel}>{guests === 1 ? 'Hóspede' : 'Hóspedes'}</Text>
+                            </div>
+                        </td>
+                        <td width="50%" style={{ verticalAlign: 'top', paddingLeft: '10px' }}>
+                            <div style={miniCard}>
+                                <Text style={miniCardIcon}>🌙</Text>
+                                <Text style={miniCardValue}>{nights}</Text>
+                                <Text style={miniCardLabel}>{nights === 1 ? 'Noite' : 'Noites'}</Text>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+                {/* Special Requests */}
                 {specialRequests && (
-                    <Row style={row}>
-                        <Column>
-                            <Text style={label}>Pedidos Especiais</Text>
-                            <Text style={value}>{specialRequests}</Text>
-                        </Column>
-                    </Row>
+                    <>
+                        <Hr style={cardDivider} />
+                        <div style={specialRequestsBox}>
+                            <Text style={specialRequestsLabel}>
+                                <span style={specialRequestsIcon}>💬</span> Pedidos Especiais
+                            </Text>
+                            <Text style={specialRequestsText}>{specialRequests}</Text>
+                        </div>
+                    </>
                 )}
 
-                <Hr style={divider} />
-
-                <Row>
-                    <Column>
-                        <Text style={totalLabel}>Total</Text>
-                    </Column>
-                    <Column align="right">
-                        <Text style={totalValue}>{totalPrice?.toLocaleString('pt-PT')} CVE</Text>
-                    </Column>
-                </Row>
+                {/* Total */}
+                <Hr style={totalDivider} />
+                <table width="100%" cellPadding="0" cellSpacing="0">
+                    <tr>
+                        <td>
+                            <Text style={totalLabel}>Total a Pagar</Text>
+                        </td>
+                        <td style={{ textAlign: 'right' as const }}>
+                            <Text style={totalValue}>{totalPrice?.toLocaleString('pt-PT')} CVE</Text>
+                        </td>
+                    </tr>
+                </table>
             </Section>
 
-            <Section style={infoBox}>
-                <Heading as="h3" style={h3}>📍 Informações Importantes</Heading>
-                <Text style={infoText}>• O pequeno-almoço está incluído na sua estadia.</Text>
-                <Text style={infoText}>• Dispomos de Wi-Fi gratuito em todas as áreas.</Text>
-                <Text style={infoText}>• Check-in antecipado sujeito a disponibilidade.</Text>
-                <br />
-                <Button
-                    href="https://wa.me/2381234567" // Replace with actual WhatsApp number if available
-                    style={button}
-                >
-                    Falar no WhatsApp
-                </Button>
+            {/* Info Cards */}
+            <Section style={infoSection}>
+                <Text style={infoTitle}>✨ O que está incluído</Text>
+
+                <table width="100%" cellPadding="0" cellSpacing="0">
+                    <tr>
+                        <td width="50%" style={{ paddingRight: '8px', paddingBottom: '12px' }}>
+                            <div style={infoCard}>
+                                <Text style={infoCardIcon}>🍳</Text>
+                                <Text style={infoCardText}>Pequeno-almoço</Text>
+                            </div>
+                        </td>
+                        <td width="50%" style={{ paddingLeft: '8px', paddingBottom: '12px' }}>
+                            <div style={infoCard}>
+                                <Text style={infoCardIcon}>📶</Text>
+                                <Text style={infoCardText}>Wi-Fi Grátis</Text>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="50%" style={{ paddingRight: '8px' }}>
+                            <div style={infoCard}>
+                                <Text style={infoCardIcon}>🧹</Text>
+                                <Text style={infoCardText}>Limpeza Diária</Text>
+                            </div>
+                        </td>
+                        <td width="50%" style={{ paddingLeft: '8px' }}>
+                            <div style={infoCard}>
+                                <Text style={infoCardIcon}>🅿️</Text>
+                                <Text style={infoCardText}>Estacionamento</Text>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
             </Section>
 
+            {/* Contact CTA */}
+            <Section style={ctaSection}>
+                <Text style={ctaText}>
+                    Tem alguma dúvida? Estamos aqui para ajudar!
+                </Text>
+                <table width="100%" cellPadding="0" cellSpacing="0">
+                    <tr>
+                        <td style={{ textAlign: 'center' as const }}>
+                            <Button href="https://wa.me/2389876543" style={whatsappButton}>
+                                💬 Falar no WhatsApp
+                            </Button>
+                        </td>
+                    </tr>
+                </table>
+            </Section>
+
+            {/* Closing */}
             <Text style={closing}>
-                Se tiver alguma dúvida, não hesite em contactar-nos.
-                <br />
+                Mal podemos esperar para recebê-lo!
+                <br /><br />
                 Com os melhores cumprimentos,
                 <br />
-                <strong>Equipa Casa Tiana</strong>
+                <strong style={{ color: '#8B7355' }}>Equipa Casa Tiana</strong>
             </Text>
         </Layout>
     );
 };
 
-// Styles
+// Premium Styles
+const successBadge = {
+    textAlign: 'center' as const,
+    marginBottom: '30px',
+};
+
+const successIcon = {
+    display: 'inline-block',
+    width: '60px',
+    height: '60px',
+    lineHeight: '60px',
+    fontSize: '30px',
+    color: '#ffffff',
+    backgroundColor: '#22c55e',
+    borderRadius: '50%',
+    margin: '0 auto 10px',
+};
+
+const successText = {
+    color: '#22c55e',
+    fontSize: '14px',
+    fontWeight: 'bold',
+    textTransform: 'uppercase' as const,
+    letterSpacing: '2px',
+    margin: '0',
+};
+
 const h1 = {
+    color: '#1a1a1a',
+    fontSize: '28px',
+    fontWeight: 'bold',
+    fontFamily: 'Playfair Display, Georgia, serif',
+    textAlign: 'center' as const,
+    margin: '0 0 15px',
+    lineHeight: '1.3',
+};
+
+const welcomeText = {
+    color: '#666',
+    fontSize: '16px',
+    lineHeight: '1.7',
+    textAlign: 'center' as const,
+    margin: '0 0 30px',
+};
+
+const reservationCard = {
+    background: 'linear-gradient(135deg, #8B7355 0%, #C4A77D 100%)',
+    borderRadius: '12px',
+    padding: '25px',
+    textAlign: 'center' as const,
+    marginBottom: '25px',
+};
+
+const reservationLabel = {
+    color: 'rgba(255,255,255,0.8)',
+    fontSize: '12px',
+    textTransform: 'uppercase' as const,
+    letterSpacing: '2px',
+    margin: '0 0 5px',
+};
+
+const reservationNumber_style = {
+    color: '#ffffff',
+    fontSize: '26px',
+    fontWeight: 'bold',
+    fontFamily: 'monospace',
+    margin: '0',
+    letterSpacing: '2px',
+};
+
+const detailsCard = {
+    backgroundColor: '#fafafa',
+    border: '1px solid #e8e8e8',
+    borderRadius: '16px',
+    padding: '30px',
+    marginBottom: '25px',
+};
+
+const cardTitle = {
+    color: '#1a1a1a',
+    fontSize: '18px',
+    fontWeight: 'bold',
+    margin: '0 0 5px',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '8px',
+};
+
+const cardTitleIcon = {
+    fontSize: '20px',
+};
+
+const cardDivider = {
+    borderColor: '#e8e8e8',
+    margin: '20px 0',
+};
+
+const detailRow = {
+    display: 'flex',
+    alignItems: 'flex-start',
+    marginBottom: '20px',
+};
+
+const detailIconContainer = {
+    width: '40px',
+    height: '40px',
+    backgroundColor: '#f0ebe5',
+    borderRadius: '10px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginRight: '15px',
+};
+
+const detailIcon = {
+    fontSize: '20px',
+    margin: '0',
+};
+
+const detailContent = {
+    flex: '1',
+};
+
+const detailLabel = {
+    color: '#888',
+    fontSize: '12px',
+    textTransform: 'uppercase' as const,
+    letterSpacing: '0.5px',
+    margin: '0 0 4px',
+};
+
+const detailValue = {
+    color: '#1a1a1a',
+    fontSize: '16px',
+    fontWeight: '600',
+    margin: '0',
+};
+
+const dateCard = {
+    backgroundColor: '#ffffff',
+    border: '1px solid #e8e8e8',
+    borderRadius: '12px',
+    padding: '15px',
+    textAlign: 'center' as const,
+};
+
+const dateLabel = {
+    color: '#888',
+    fontSize: '11px',
+    textTransform: 'uppercase' as const,
+    letterSpacing: '1px',
+    margin: '0 0 8px',
+};
+
+const dateLabelIcon = {
+    fontSize: '12px',
+};
+
+const dateValue = {
+    color: '#1a1a1a',
+    fontSize: '14px',
+    fontWeight: '600',
+    margin: '0 0 4px',
+    lineHeight: '1.4',
+};
+
+const dateTime = {
     color: '#8B7355',
+    fontSize: '12px',
+    fontWeight: '500',
+    margin: '0',
+};
+
+const miniCard = {
+    backgroundColor: '#ffffff',
+    border: '1px solid #e8e8e8',
+    borderRadius: '12px',
+    padding: '20px 15px',
+    textAlign: 'center' as const,
+};
+
+const miniCardIcon = {
     fontSize: '24px',
+    margin: '0 0 8px',
+};
+
+const miniCardValue = {
+    color: '#1a1a1a',
+    fontSize: '28px',
+    fontWeight: 'bold',
+    margin: '0 0 4px',
+};
+
+const miniCardLabel = {
+    color: '#888',
+    fontSize: '12px',
+    textTransform: 'uppercase' as const,
+    letterSpacing: '0.5px',
+    margin: '0',
+};
+
+const specialRequestsBox = {
+    backgroundColor: '#fffbeb',
+    border: '1px solid #fcd34d',
+    borderRadius: '10px',
+    padding: '15px',
+};
+
+const specialRequestsLabel = {
+    color: '#92400e',
+    fontSize: '12px',
+    fontWeight: 'bold',
+    textTransform: 'uppercase' as const,
+    letterSpacing: '0.5px',
+    margin: '0 0 8px',
+};
+
+const specialRequestsIcon = {
+    fontSize: '14px',
+};
+
+const specialRequestsText = {
+    color: '#78350f',
+    fontSize: '14px',
+    lineHeight: '1.5',
+    margin: '0',
+};
+
+const totalDivider = {
+    borderColor: '#8B7355',
+    borderWidth: '2px',
+    margin: '25px 0 20px',
+};
+
+const totalLabel = {
+    color: '#1a1a1a',
+    fontSize: '18px',
+    fontWeight: '600',
+    margin: '0',
+};
+
+const totalValue = {
+    color: '#8B7355',
+    fontSize: '28px',
+    fontWeight: 'bold',
+    margin: '0',
+};
+
+const infoSection = {
+    marginBottom: '25px',
+};
+
+const infoTitle = {
+    color: '#1a1a1a',
+    fontSize: '16px',
     fontWeight: 'bold',
     textAlign: 'center' as const,
     margin: '0 0 20px',
 };
 
-const text = {
-    color: '#555',
-    fontSize: '16px',
-    lineHeight: '1.6',
-    marginBottom: '20px',
+const infoCard = {
+    backgroundColor: '#f8f6f3',
+    borderRadius: '10px',
+    padding: '15px',
     textAlign: 'center' as const,
 };
 
-const box = {
-    backgroundColor: '#ffffff',
-    border: '1px solid #e0e0e0',
-    borderRadius: '8px',
-    padding: '24px',
-    marginBottom: '24px',
-    boxShadow: '0 2px 4px rgba(0,0,0,0.05)',
-    borderTop: '4px solid #8B7355',
+const infoCardIcon = {
+    fontSize: '24px',
+    margin: '0 0 8px',
 };
 
-const boxTitle = {
-    color: '#8B7355',
-    fontSize: '14px',
-    fontWeight: 'bold',
-    textTransform: 'uppercase' as const,
-    letterSpacing: '1px',
-    margin: '0',
-    textAlign: 'center' as const,
-};
-
-const reservationId = {
-    color: '#333',
-    fontSize: '20px',
-    fontWeight: 'bold',
-    margin: '5px 0 20px',
-    textAlign: 'center' as const,
-};
-
-const divider = {
-    borderColor: '#eee',
-    margin: '15px 0',
-};
-
-const row = {
-    marginBottom: '15px',
-};
-
-const label = {
-    color: '#888',
-    fontSize: '12px',
-    textTransform: 'uppercase' as const,
-    letterSpacing: '0.5px',
-    marginBottom: '4px',
-};
-
-const value = {
-    color: '#333',
-    fontSize: '16px',
+const infoCardText = {
+    color: '#666',
+    fontSize: '13px',
     fontWeight: '500',
     margin: '0',
 };
 
-const subValue = {
-    color: '#999',
-    fontSize: '12px',
-    margin: '2px 0 0',
-};
-
-const totalLabel = {
-    color: '#333',
-    fontSize: '18px',
-    fontWeight: 'bold',
-};
-
-const totalValue = {
-    color: '#8B7355',
-    fontSize: '22px',
-    fontWeight: 'bold',
-    textAlign: 'right' as const,
-};
-
-const infoBox = {
-    backgroundColor: '#f8f8f8',
-    borderRadius: '8px',
-    padding: '24px',
-    marginBottom: '24px',
+const ctaSection = {
+    backgroundColor: '#f0ebe5',
+    borderRadius: '12px',
+    padding: '25px',
     textAlign: 'center' as const,
+    marginBottom: '25px',
 };
 
-const h3 = {
-    color: '#333',
-    fontSize: '18px',
+const ctaText = {
+    color: '#666',
+    fontSize: '15px',
     margin: '0 0 15px',
 };
 
-const infoText = {
-    color: '#666',
-    fontSize: '14px',
-    margin: '5px 0',
-};
-
-const button = {
+const whatsappButton = {
     backgroundColor: '#25D366',
-    color: '#fff',
-    padding: '12px 24px',
-    borderRadius: '4px',
-    textDecoration: 'none',
+    color: '#ffffff',
+    fontSize: '15px',
     fontWeight: 'bold',
-    fontSize: '14px',
+    padding: '14px 28px',
+    borderRadius: '50px',
+    textDecoration: 'none',
     display: 'inline-block',
-    marginTop: '15px',
+    boxShadow: '0 4px 15px rgba(37, 211, 102, 0.3)',
 };
 
 const closing = {
     color: '#666',
-    fontSize: '14px',
-    lineHeight: '1.6',
+    fontSize: '15px',
+    lineHeight: '1.7',
     textAlign: 'center' as const,
-    marginTop: '30px',
+    margin: '0',
 };
 
 export default ReservationEmail;

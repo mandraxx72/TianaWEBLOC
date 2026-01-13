@@ -1,0 +1,16 @@
+project_id = "gdugovqkigplttcvmoqy"
+
+[functions.weather]
+verify_jwt = false
+
+[functions.send-reservation-email]
+verify_jwt = false
+
+[functions.sync-external-calendars]
+verify_jwt = false
+
+[functions.sisp-create-payment]
+verify_jwt = false
+
+[functions.sisp-callback]
+verify_jwt = false

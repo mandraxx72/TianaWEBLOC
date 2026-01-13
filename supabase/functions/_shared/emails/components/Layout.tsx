@@ -23,10 +23,20 @@ export const Layout = ({ preview, children }: LayoutProps) => {
         <Html>
             <Head>
                 <Font
-                    fontFamily="Roboto"
-                    fallbackFontFamily="Verdana"
+                    fontFamily="Playfair Display"
+                    fallbackFontFamily="Georgia"
                     webFont={{
-                        url: 'https://fonts.gstatic.com/s/roboto/v27/KFOmCnqEu92Fr1Mu4mxK.woff2',
+                        url: 'https://fonts.gstatic.com/s/playfairdisplay/v30/nuFvD-vYSZviVYUb_rj3ij__anPXJzDwcbmjWBN2PKdFvXDXbtY.woff2',
+                        format: 'woff2',
+                    }}
+                    fontWeight={400}
+                    fontStyle="normal"
+                />
+                <Font
+                    fontFamily="Inter"
+                    fallbackFontFamily="Arial"
+                    webFont={{
+                        url: 'https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2',
                         format: 'woff2',
                     }}
                     fontWeight={400}
@@ -36,39 +46,95 @@ export const Layout = ({ preview, children }: LayoutProps) => {
             {preview && <Preview>{preview}</Preview>}
             <Body style={main}>
                 <Container style={container}>
+                    {/* Elegant Header with Gradient */}
                     <Section style={header}>
-                        <Text style={logo}>Casa Tiana</Text>
-                        <Text style={subLogo}>Mindelo, São Vicente</Text>
+                        <table width="100%" cellPadding="0" cellSpacing="0" style={{ textAlign: 'center' as const }}>
+                            <tr>
+                                <td>
+                                    <Text style={logoIcon}>🏠</Text>
+                                    <Text style={logo}>Casa Tiana</Text>
+                                    <Text style={subLogo}>Boutique Guesthouse</Text>
+                                    <Text style={location}>
+                                        <span style={locationIcon}>📍</span> Mindelo, São Vicente
+                                    </Text>
+                                </td>
+                            </tr>
+                        </table>
                     </Section>
 
+                    {/* Decorative Wave Divider */}
+                    <Section style={waveDivider}>
+                        <svg width="100%" height="20" viewBox="0 0 600 20" preserveAspectRatio="none">
+                            <path d="M0,20 C150,0 450,0 600,20 L600,20 L0,20 Z" fill="#ffffff" />
+                        </svg>
+                    </Section>
+
+                    {/* Main Content */}
                     <Section style={content}>
                         {children}
                     </Section>
 
+                    {/* Elegant Footer */}
                     <Section style={footer}>
-                        <Text style={footerText}>
-                            © {new Date().getFullYear()} Casa Tiana. Todos os direitos reservados.
-                        </Text>
-                        <Text style={footerText}>
-                            Rua de Lisboa, Mindelo, São Vicente, Cabo Verde
-                        </Text>
-                        <div style={socialLinks}>
-                            <Link href="https://instagram.com" style={link}>Instagram</Link>
-                            <span style={{ margin: '0 8px' }}>•</span>
-                            <Link href="https://facebook.com" style={link}>Facebook</Link>
-                        </div>
+                        <table width="100%" cellPadding="0" cellSpacing="0">
+                            <tr>
+                                <td style={{ textAlign: 'center' as const }}>
+                                    {/* Social Icons */}
+                                    <div style={socialContainer}>
+                                        <Link href="https://instagram.com/casatiana" style={socialLink}>
+                                            <span style={socialIcon}>📷</span>
+                                        </Link>
+                                        <Link href="https://facebook.com/casatiana" style={socialLink}>
+                                            <span style={socialIcon}>📘</span>
+                                        </Link>
+                                        <Link href="https://wa.me/2389876543" style={socialLink}>
+                                            <span style={socialIcon}>💬</span>
+                                        </Link>
+                                    </div>
+
+                                    <Hr style={footerDivider} />
+
+                                    <Text style={footerBrand}>Casa Tiana</Text>
+                                    <Text style={footerAddress}>
+                                        Rua de Lisboa, Mindelo<br />
+                                        São Vicente, Cabo Verde
+                                    </Text>
+
+                                    <div style={footerLinks}>
+                                        <Link href="https://casatiana.com" style={footerLink}>Website</Link>
+                                        <span style={footerSeparator}>•</span>
+                                        <Link href="mailto:reservas@casatiana.com" style={footerLink}>Email</Link>
+                                        <span style={footerSeparator}>•</span>
+                                        <Link href="tel:+2389876543" style={footerLink}>Telefone</Link>
+                                    </div>
+
+                                    <Text style={copyright}>
+                                        © {new Date().getFullYear()} Casa Tiana. Todos os direitos reservados.
+                                    </Text>
+                                </td>
+                            </tr>
+                        </table>
                     </Section>
+                </Container>
+
+                {/* Unsubscribe / Legal Footer */}
+                <Container style={legalContainer}>
+                    <Text style={legalText}>
+                        Este email foi enviado porque fez uma reserva na Casa Tiana.
+                        <br />
+                        <Link href="https://casatiana.com/privacidade" style={legalLink}>Política de Privacidade</Link>
+                    </Text>
                 </Container>
             </Body>
         </Html>
     );
 };
 
-// Styles
+// Premium Styles
 const main = {
-    backgroundColor: '#f6f9fc',
-    fontFamily: 'Roboto, Verdana, sans-serif',
-    padding: '20px 0',
+    backgroundColor: '#f8f6f3',
+    fontFamily: 'Inter, Arial, sans-serif',
+    padding: '40px 20px',
 };
 
 const container = {
@@ -76,56 +142,152 @@ const container = {
     margin: '0 auto',
     padding: '0',
     maxWidth: '600px',
-    borderRadius: '8px',
+    borderRadius: '16px',
     overflow: 'hidden',
-    boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
+    boxShadow: '0 20px 60px rgba(139, 115, 85, 0.15), 0 8px 25px rgba(0,0,0,0.08)',
 };
 
 const header = {
-    backgroundColor: '#8B7355', // Brand gold/brown
-    padding: '30px 20px',
+    background: 'linear-gradient(135deg, #8B7355 0%, #A08B70 50%, #C4A77D 100%)',
+    padding: '50px 30px 60px',
     textAlign: 'center' as const,
+};
+
+const logoIcon = {
+    fontSize: '40px',
+    margin: '0 0 10px',
+    display: 'block',
 };
 
 const logo = {
     color: '#ffffff',
-    fontSize: '28px',
+    fontSize: '36px',
     fontWeight: 'bold',
+    fontFamily: 'Playfair Display, Georgia, serif',
     margin: '0',
-    letterSpacing: '1px',
+    letterSpacing: '2px',
+    textShadow: '0 2px 4px rgba(0,0,0,0.1)',
 };
 
 const subLogo = {
-    color: 'rgba(255,255,255,0.9)',
+    color: 'rgba(255,255,255,0.85)',
     fontSize: '14px',
-    margin: '5px 0 0',
+    fontWeight: '300',
+    letterSpacing: '3px',
+    textTransform: 'uppercase' as const,
+    margin: '8px 0 0',
+};
+
+const location = {
+    color: 'rgba(255,255,255,0.9)',
+    fontSize: '13px',
+    margin: '15px 0 0',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '5px',
+};
+
+const locationIcon = {
+    fontSize: '14px',
+};
+
+const waveDivider = {
+    backgroundColor: 'linear-gradient(135deg, #8B7355 0%, #C4A77D 100%)',
+    marginTop: '-20px',
+    padding: '0',
 };
 
 const content = {
-    padding: '40px 30px',
+    padding: '50px 40px',
+    backgroundColor: '#ffffff',
 };
 
 const footer = {
-    backgroundColor: '#1a1a1a',
-    padding: '30px 20px',
+    background: 'linear-gradient(180deg, #1a1a1a 0%, #2d2d2d 100%)',
+    padding: '40px 30px',
     textAlign: 'center' as const,
 };
 
-const footerText = {
-    color: '#888888',
-    fontSize: '12px',
-    lineHeight: '1.5',
-    margin: '4px 0',
+const socialContainer = {
+    marginBottom: '25px',
 };
 
-const socialLinks = {
-    marginTop: '20px',
-};
-
-const link = {
-    color: '#8B7355',
-    fontSize: '12px',
+const socialLink = {
+    display: 'inline-block',
+    margin: '0 10px',
     textDecoration: 'none',
+};
+
+const socialIcon = {
+    fontSize: '24px',
+    display: 'inline-block',
+    width: '44px',
+    height: '44px',
+    lineHeight: '44px',
+    backgroundColor: 'rgba(255,255,255,0.1)',
+    borderRadius: '50%',
+    transition: 'background-color 0.3s ease',
+};
+
+const footerDivider = {
+    borderColor: 'rgba(255,255,255,0.1)',
+    margin: '25px 0',
+};
+
+const footerBrand = {
+    color: '#C4A77D',
+    fontSize: '20px',
+    fontFamily: 'Playfair Display, Georgia, serif',
+    fontWeight: 'bold',
+    margin: '0 0 10px',
+};
+
+const footerAddress = {
+    color: 'rgba(255,255,255,0.6)',
+    fontSize: '13px',
+    lineHeight: '1.8',
+    margin: '0 0 20px',
+};
+
+const footerLinks = {
+    marginBottom: '20px',
+};
+
+const footerLink = {
+    color: '#C4A77D',
+    fontSize: '13px',
+    textDecoration: 'none',
+};
+
+const footerSeparator = {
+    color: 'rgba(255,255,255,0.3)',
+    margin: '0 12px',
+};
+
+const copyright = {
+    color: 'rgba(255,255,255,0.4)',
+    fontSize: '11px',
+    margin: '0',
+};
+
+const legalContainer = {
+    maxWidth: '600px',
+    margin: '0 auto',
+    padding: '25px 20px',
+};
+
+const legalText = {
+    color: '#999',
+    fontSize: '11px',
+    lineHeight: '1.6',
+    textAlign: 'center' as const,
+    margin: '0',
+};
+
+const legalLink = {
+    color: '#8B7355',
+    textDecoration: 'underline',
 };
 
 export default Layout;

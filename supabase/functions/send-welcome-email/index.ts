@@ -28,12 +28,12 @@ const handler = async (req: Request): Promise<Response> => {
         console.log("Sending welcome email to:", data.email);
 
         const emailHtml = await render(
-            <WelcomeEmail name={ data.name } />
-    );
+            React.createElement(WelcomeEmail, { name: data.name })
+        );
 
         // Email to guest
         const emailResponse = await resend.emails.send({
-            from: "Casa Tiana <onboarding@resend.dev>",
+            from: "Casa Tiana <reservas@casatiana.com>",
             to: [data.email],
             subject: `Bem-vindo à Casa Tiana! 🌴`,
             html: emailHtml,

@@ -50,22 +50,22 @@ const handler = async (req: Request): Promise<Response> => {
     });
 
     const emailHtml = await render(
-      <ReservationEmail
-        guestName={ data.guestName }
-        reservationNumber = { data.reservationNumber }
-        roomName = { data.roomName }
-        checkIn = { checkInDate }
-        checkOut = { checkOutDate }
-        guests = { data.guests }
-        nights = { data.nights }
-        totalPrice = { data.totalPrice }
-        specialRequests = { data.specialRequests }
-      />
+      React.createElement(ReservationEmail, {
+        guestName: data.guestName,
+        reservationNumber: data.reservationNumber,
+        roomName: data.roomName,
+        checkIn: checkInDate,
+        checkOut: checkOutDate,
+        guests: data.guests,
+        nights: data.nights,
+        totalPrice: data.totalPrice,
+        specialRequests: data.specialRequests
+      })
     );
 
     // Email to guest
     const guestEmailResponse = await resend.emails.send({
-      from: "Casa Tiana <onboarding@resend.dev>",
+      from: "Casa Tiana <reservas@casatiana.com>",
       to: [data.guestEmail],
       subject: `Confirmação de Reserva - ${data.reservationNumber}`,
       html: emailHtml,

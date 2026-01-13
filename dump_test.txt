@@ -1,0 +1,47 @@
+﻿node.exe : Dumping 
+schemas from remote 
+database...
+At C:\Program Files\n
+odejs\npx.ps1:29 
+char:3
++   & $NODE_EXE 
+$NPX_CLI_JS $args
++   ~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~
+    + CategoryInfo   
+           : NotSpe  
+  cified: (Dumping   
+  schemas from re    
+mote database...    
+:String) [], Rem    
+oteException
+    + FullyQualified 
+   ErrorId : Native  
+  CommandError
+ 
+failed to inspect 
+docker image: error 
+during connect: in 
+the default daemon 
+configuration on 
+Windows, the docker 
+client must be run 
+with elevated 
+privileges to 
+connect: Get "http://
+%2F%2F.%2Fpipe%2Fdock
+er_engine/v1.51/image
+s/public.ecr.aws/supa
+base/postgres:17.6.1.
+067/json": open //./p
+ipe/docker_engine: 
+The system cannot 
+find the file 
+specified.
+Docker Desktop is a 
+prerequisite for 
+local development. 
+Follow the official 
+docs to install: http
+s://docs.docker.com/d
+esktop

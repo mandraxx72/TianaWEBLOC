@@ -40,16 +40,18 @@ const App = () => (
                 <Sonner />
                 <BrowserRouter>
                   <ScrollToTop />
-                  <Routes>
-                    <Route path="/" element={<Index />} />
-                    <Route path="/auth" element={<Auth />} />
-                    <Route path="/minhas-reservas" element={<MyReservations />} />
-                    <Route path="/my-reservations" element={<MyReservations />} />
-                    <Route path="/admin" element={<Admin />} />
-                    <Route path="/payment-result" element={<PaymentResult />} />
-                    <Route path="/blog/trilhas-mindelo" element={<BlogPost />} />
-                    <Route path="*" element={<NotFound />} />
-                  </Routes>
+                  <div className="font-inter antialiased text-foreground bg-background selection:bg-gold-start/20 min-h-screen">
+                    <Routes>
+                      <Route path="/" element={<Index />} />
+                      <Route path="/auth" element={<Auth />} />
+                      <Route path="/minhas-reservas" element={<MyReservations />} />
+                      <Route path="/my-reservations" element={<MyReservations />} />
+                      <Route path="/admin" element={<Admin />} />
+                      <Route path="/payment-result" element={<PaymentResult />} />
+                      <Route path="/blog/trilhas-mindelo" element={<BlogPost />} />
+                      <Route path="*" element={<NotFound />} />
+                    </Routes>
+                  </div>
                 </BrowserRouter>
               </TooltipProvider>
             </BookingProvider>
