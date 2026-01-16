@@ -51,62 +51,65 @@ export const ReservationEmail = ({
 
             {/* Details Card */}
             <Section style={detailsCard}>
-                <Text style={cardTitle}>
-                    <span style={cardTitleIcon}>🏨</span> Detalhes da Estadia
-                </Text>
-
-                <Hr style={cardDivider} />
-
-                {/* Room */}
-                <div style={detailRow}>
-                    <div style={detailIconContainer}>
-                        <Text style={detailIcon}>🛏️</Text>
-                    </div>
-                    <div style={detailContent}>
-                        <Text style={detailLabel}>Quarto</Text>
-                        <Text style={detailValue}>{roomName}</Text>
-                    </div>
-                </div>
-
-                {/* Check-in / Check-out */}
-                <table width="100%" cellPadding="0" cellSpacing="0" style={{ marginBottom: '20px' }}>
+                <table width="100%" cellPadding="0" cellSpacing="0">
                     <tr>
-                        <td width="50%" style={{ verticalAlign: 'top', paddingRight: '10px' }}>
+                        <td width="35%" style={{ verticalAlign: 'top' }}>
                             <div style={dateCard}>
-                                <Text style={dateLabel}>
-                                    <span style={dateLabelIcon}>📅</span> Check-in
-                                </Text>
+                                <table border={0} cellPadding="0" cellSpacing="0">
+                                    <tr>
+                                        <td style={{ verticalAlign: 'middle', paddingRight: '5px' }}>
+                                            <Img
+                                                src="https://casatiana.com/images/email-icons/calendar.png"
+                                                width="14"
+                                                height="14"
+                                                alt="Calendar"
+                                            />
+                                        </td>
+                                        <td style={{ verticalAlign: 'middle' }}>
+                                            <Text style={dateLabel}>Check-in</Text>
+                                        </td>
+                                    </tr>
+                                </table>
                                 <Text style={dateValue}>{checkIn}</Text>
-                                <Text style={dateTime}>A partir das 14:00</Text>
                             </div>
-                        </td>
-                        <td width="50%" style={{ verticalAlign: 'top', paddingLeft: '10px' }}>
-                            <div style={dateCard}>
-                                <Text style={dateLabel}>
-                                    <span style={dateLabelIcon}>📅</span> Check-out
-                                </Text>
+                            <div style={{ ...dateCard, marginTop: '10px' }}>
+                                <table border={0} cellPadding="0" cellSpacing="0">
+                                    <tr>
+                                        <td style={{ verticalAlign: 'middle', paddingRight: '5px' }}>
+                                            <Img
+                                                src="https://casatiana.com/images/email-icons/calendar.png"
+                                                width="14"
+                                                height="14"
+                                                alt="Calendar"
+                                            />
+                                        </td>
+                                        <td style={{ verticalAlign: 'middle' }}>
+                                            <Text style={dateLabel}>Check-out</Text>
+                                        </td>
+                                    </tr>
+                                </table>
                                 <Text style={dateValue}>{checkOut}</Text>
-                                <Text style={dateTime}>Até às 12:00</Text>
                             </div>
                         </td>
-                    </tr>
-                </table>
-
-                {/* Guests & Nights */}
-                <table width="100%" cellPadding="0" cellSpacing="0" style={{ marginBottom: '20px' }}>
-                    <tr>
-                        <td width="50%" style={{ verticalAlign: 'top', paddingRight: '10px' }}>
+                        <td width="30%" style={{ verticalAlign: 'middle', textAlign: 'center' as const }}>
                             <div style={miniCard}>
-                                <Text style={miniCardIcon}>👤</Text>
+                                <div style={{ marginBottom: '8px' }}>
+                                    <Img
+                                        src="https://casatiana.com/images/email-icons/guests.png"
+                                        width="32"
+                                        height="32"
+                                        alt="Guests"
+                                        style={{ margin: '0 auto' }}
+                                    />
+                                </div>
                                 <Text style={miniCardValue}>{guests}</Text>
-                                <Text style={miniCardLabel}>{guests === 1 ? 'Hóspede' : 'Hóspedes'}</Text>
+                                <Text style={miniCardLabel}>Hóspedes: <br />{guests} Adultos</Text>
                             </div>
                         </td>
-                        <td width="50%" style={{ verticalAlign: 'top', paddingLeft: '10px' }}>
-                            <div style={miniCard}>
-                                <Text style={miniCardIcon}>🌙</Text>
-                                <Text style={miniCardValue}>{nights}</Text>
-                                <Text style={miniCardLabel}>{nights === 1 ? 'Noite' : 'Noites'}</Text>
+                        <td width="35%" style={{ verticalAlign: 'middle', textAlign: 'right' as const }}>
+                            <div style={totalPriceBox}>
+                                <Text style={totalValue}>{totalPrice?.toLocaleString('pt-PT')} CVE</Text>
+                                <Text style={totalPriceLabel}>Preço Total (Incl. Taxas)</Text>
                             </div>
                         </td>
                     </tr>
@@ -124,67 +127,85 @@ export const ReservationEmail = ({
                         </div>
                     </>
                 )}
-
-                {/* Total */}
-                <Hr style={totalDivider} />
-                <table width="100%" cellPadding="0" cellSpacing="0">
-                    <tr>
-                        <td>
-                            <Text style={totalLabel}>Total a Pagar</Text>
-                        </td>
-                        <td style={{ textAlign: 'right' as const }}>
-                            <Text style={totalValue}>{totalPrice?.toLocaleString('pt-PT')} CVE</Text>
-                        </td>
-                    </tr>
-                </table>
             </Section>
 
             {/* Info Cards */}
             <Section style={infoSection}>
-                <Text style={infoTitle}>✨ O que está incluído</Text>
-
                 <table width="100%" cellPadding="0" cellSpacing="0">
                     <tr>
-                        <td width="50%" style={{ paddingRight: '8px', paddingBottom: '12px' }}>
+                        <td width="25%" style={{ paddingRight: '4px' }}>
                             <div style={infoCard}>
-                                <Text style={infoCardIcon}>🍳</Text>
-                                <Text style={infoCardText}>Pequeno-almoço</Text>
+                                <div style={{ height: '32px', marginBottom: '8px', textAlign: 'center' as const }}>
+                                    <Img
+                                        src="https://casatiana.com/images/email-icons/breakfast.png"
+                                        width="24"
+                                        height="24"
+                                        alt="Café da Manhã"
+                                        style={{ margin: '0 auto' }}
+                                    />
+                                </div>
+                                <Text style={infoCardText}>Café da Manhã Incluído</Text>
                             </div>
                         </td>
-                        <td width="50%" style={{ paddingLeft: '8px', paddingBottom: '12px' }}>
+                        <td width="25%" style={{ paddingLeft: '4px' }}>
                             <div style={infoCard}>
-                                <Text style={infoCardIcon}>📶</Text>
-                                <Text style={infoCardText}>Wi-Fi Grátis</Text>
+                                <div style={{ height: '32px', marginBottom: '8px', textAlign: 'center' as const }}>
+                                    <Img
+                                        src="https://casatiana.com/images/email-icons/wifi.png"
+                                        width="24"
+                                        height="24"
+                                        alt="Wi-Fi"
+                                        style={{ margin: '0 auto' }}
+                                    />
+                                </div>
+                                <Text style={infoCardText}>Wi-Fi de Alta Velocidade</Text>
                             </div>
                         </td>
-                    </tr>
-                    <tr>
-                        <td width="50%" style={{ paddingRight: '8px' }}>
+                        <td width="25%" style={{ paddingLeft: '4px' }}>
                             <div style={infoCard}>
-                                <Text style={infoCardIcon}>🧹</Text>
+                                <div style={{ height: '32px', marginBottom: '8px', textAlign: 'center' as const }}>
+                                    <Img
+                                        src="https://casatiana.com/images/email-icons/cleaning.png"
+                                        width="24"
+                                        height="24"
+                                        alt="Limpeza"
+                                        style={{ margin: '0 auto' }}
+                                    />
+                                </div>
                                 <Text style={infoCardText}>Limpeza Diária</Text>
                             </div>
                         </td>
-                        <td width="50%" style={{ paddingLeft: '8px' }}>
+                        <td width="25%" style={{ paddingLeft: '4px' }}>
                             <div style={infoCard}>
-                                <Text style={infoCardIcon}>🅿️</Text>
-                                <Text style={infoCardText}>Estacionamento</Text>
+                                <div style={{ height: '32px', marginBottom: '8px', textAlign: 'center' as const }}>
+                                    <Img
+                                        src="https://casatiana.com/images/email-icons/parking.png"
+                                        width="24"
+                                        height="24"
+                                        alt="Estacionamento"
+                                        style={{ margin: '0 auto' }}
+                                    />
+                                </div>
+                                <Text style={infoCardText}>Estacionamento Gratuito</Text>
                             </div>
                         </td>
                     </tr>
                 </table>
             </Section>
 
-            {/* Contact CTA */}
             <Section style={ctaSection}>
-                <Text style={ctaText}>
-                    Tem alguma dúvida? Estamos aqui para ajudar!
-                </Text>
                 <table width="100%" cellPadding="0" cellSpacing="0">
                     <tr>
                         <td style={{ textAlign: 'center' as const }}>
                             <Button href="https://wa.me/2389876543" style={whatsappButton}>
-                                💬 Falar no WhatsApp
+                                <Img
+                                    src="https://casatiana.com/images/email-icons/whatsapp-white.png"
+                                    width="16"
+                                    height="16"
+                                    alt="WhatsApp"
+                                    style={{ display: 'inline-block', verticalAlign: 'middle', marginRight: '8px' }}
+                                />
+                                <span style={{ verticalAlign: 'middle' }}>Fale Conosco no WhatsApp</span>
                             </Button>
                         </td>
                     </tr>
@@ -344,9 +365,9 @@ const detailValue = {
 const dateCard = {
     backgroundColor: '#ffffff',
     border: '1px solid #e8e8e8',
-    borderRadius: '12px',
-    padding: '15px',
-    textAlign: 'center' as const,
+    borderRadius: '8px',
+    padding: '10px',
+    textAlign: 'left' as const,
 };
 
 const dateLabel = {
@@ -378,9 +399,7 @@ const dateTime = {
 
 const miniCard = {
     backgroundColor: '#ffffff',
-    border: '1px solid #e8e8e8',
-    borderRadius: '12px',
-    padding: '20px 15px',
+    padding: '10px',
     textAlign: 'center' as const,
 };
 
@@ -398,10 +417,23 @@ const miniCardValue = {
 
 const miniCardLabel = {
     color: '#888',
-    fontSize: '12px',
-    textTransform: 'uppercase' as const,
-    letterSpacing: '0.5px',
+    fontSize: '11px',
     margin: '0',
+    lineHeight: '1.2',
+};
+
+const totalPriceBox = {
+    border: '1px solid #8B7355',
+    borderRadius: '8px',
+    padding: '15px 10px',
+    textAlign: 'center' as const,
+    backgroundColor: '#ffffff',
+};
+
+const totalPriceLabel = {
+    color: '#666',
+    fontSize: '11px',
+    margin: '5px 0 0',
 };
 
 const specialRequestsBox = {
@@ -445,8 +477,8 @@ const totalLabel = {
 };
 
 const totalValue = {
-    color: '#8B7355',
-    fontSize: '28px',
+    color: '#1a1a1a',
+    fontSize: '22px',
     fontWeight: 'bold',
     margin: '0',
 };
@@ -464,9 +496,10 @@ const infoTitle = {
 };
 
 const infoCard = {
-    backgroundColor: '#f8f6f3',
+    backgroundColor: '#ffffff',
     borderRadius: '10px',
-    padding: '15px',
+    border: '1px solid #e8e8e8',
+    padding: '12px 4px',
     textAlign: 'center' as const,
 };
 
@@ -497,7 +530,7 @@ const ctaText = {
 };
 
 const whatsappButton = {
-    backgroundColor: '#25D366',
+    backgroundColor: '#22c55e',
     color: '#ffffff',
     fontSize: '15px',
     fontWeight: 'bold',
@@ -505,7 +538,6 @@ const whatsappButton = {
     borderRadius: '50px',
     textDecoration: 'none',
     display: 'inline-block',
-    boxShadow: '0 4px 15px rgba(37, 211, 102, 0.3)',
 };
 
 const closing = {

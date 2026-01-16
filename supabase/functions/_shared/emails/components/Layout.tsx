@@ -48,15 +48,30 @@ export const Layout = ({ preview, children }: LayoutProps) => {
                 <Container style={container}>
                     {/* Elegant Header with Gradient */}
                     <Section style={header}>
-                        <table width="100%" cellPadding="0" cellSpacing="0" style={{ textAlign: 'center' as const }}>
+                        <table width="100%" cellPadding="0" cellSpacing="0">
                             <tr>
-                                <td>
-                                    <Text style={logoIcon}>🏠</Text>
+                                <td style={{ textAlign: 'left' as const }}>
                                     <Text style={logo}>Casa Tiana</Text>
                                     <Text style={subLogo}>Boutique Guesthouse</Text>
-                                    <Text style={location}>
-                                        <span style={locationIcon}>📍</span> Mindelo, São Vicente
-                                    </Text>
+                                </td>
+                                <td style={{ textAlign: 'right' as const, verticalAlign: 'top' }}>
+                                    <table align="right" border={0} cellPadding="0" cellSpacing="0" style={{ width: 'auto' }}>
+                                        <tr>
+                                            <td style={{ verticalAlign: 'middle', paddingRight: '4px' }}>
+                                                <Img
+                                                    src="https://casatiana.com/images/email-icons/location.png"
+                                                    width="16"
+                                                    height="16"
+                                                    alt="Location"
+                                                />
+                                            </td>
+                                            <td style={{ verticalAlign: 'middle' }}>
+                                                <Text style={location}>
+                                                    Mindelo,<br />São Vicente
+                                                </Text>
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </td>
                             </tr>
                         </table>
@@ -101,11 +116,11 @@ export const Layout = ({ preview, children }: LayoutProps) => {
                                     </Text>
 
                                     <div style={footerLinks}>
-                                        <Link href="https://casatiana.com" style={footerLink}>Website</Link>
+                                        <Link href="https://casatiana.com/termos" style={footerLink}>Termos e Condições</Link>
                                         <span style={footerSeparator}>•</span>
-                                        <Link href="mailto:reservas@casatiana.com" style={footerLink}>Email</Link>
+                                        <Link href="https://casatiana.com/privacidade" style={footerLink}>Política de Privacidade</Link>
                                         <span style={footerSeparator}>•</span>
-                                        <Link href="tel:+2389876543" style={footerLink}>Telefone</Link>
+                                        <Link href="https://casatiana.com/cancelar" style={footerLink}>Cancelar Inscrição</Link>
                                     </div>
 
                                     <Text style={copyright}>
@@ -149,23 +164,16 @@ const container = {
 
 const header = {
     background: 'linear-gradient(135deg, #8B7355 0%, #A08B70 50%, #C4A77D 100%)',
-    padding: '50px 30px 60px',
-    textAlign: 'center' as const,
-};
-
-const logoIcon = {
-    fontSize: '40px',
-    margin: '0 0 10px',
-    display: 'block',
+    padding: '40px 30px',
 };
 
 const logo = {
     color: '#ffffff',
-    fontSize: '36px',
+    fontSize: '32px',
     fontWeight: 'bold',
     fontFamily: 'Playfair Display, Georgia, serif',
     margin: '0',
-    letterSpacing: '2px',
+    letterSpacing: '1px',
     textShadow: '0 2px 4px rgba(0,0,0,0.1)',
 };
 
@@ -180,12 +188,10 @@ const subLogo = {
 
 const location = {
     color: 'rgba(255,255,255,0.9)',
-    fontSize: '13px',
-    margin: '15px 0 0',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: '5px',
+    fontSize: '12px',
+    margin: '0',
+    lineHeight: '1.4',
+    textAlign: 'right' as const,
 };
 
 const locationIcon = {
