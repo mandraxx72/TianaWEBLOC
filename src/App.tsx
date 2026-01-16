@@ -16,6 +16,7 @@ import MyReservations from "./pages/MyReservations";
 import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
 import PaymentResult from "./pages/PaymentResult";
+import EmailPreview from "./pages/EmailPreview";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -48,6 +49,7 @@ const App = () => (
                       <Route path="/my-reservations" element={<MyReservations />} />
                       <Route path="/admin" element={<Admin />} />
                       <Route path="/payment-result" element={<PaymentResult />} />
+                      <Route path="/email-preview" element={<EmailPreview />} />
                       <Route path="/blog/trilhas-mindelo" element={<BlogPost />} />
                       <Route path="*" element={<NotFound />} />
                     </Routes>

@@ -22,8 +22,8 @@ const Footer = ({
   siteName = "Casa Tiana",
   contactInfo = {
     address: ["Alto São Nicolau", "Mindelo - S.Vicente"],
-    phone: ["+2385937127"],
-    email: "casatiana@gmail.com"
+    phone: ["+238 5937127"],
+    email: "info@casatiana.com"
   },
   socialLinks = {},
   awards = [

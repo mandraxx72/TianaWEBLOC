@@ -14,3 +14,9 @@ verify_jwt = false
 
 [functions.sisp-callback]
 verify_jwt = false
+
+[functions.send-pending-payment-email]
+verify_jwt = false
+
+[functions.send-welcome-email]
+verify_jwt = false

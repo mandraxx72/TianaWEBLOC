@@ -209,10 +209,56 @@ const RoomDetailModal = ({ room, isOpen, onClose }: RoomDetailModalProps) => {
     }
   };
 
-  const handlePayLater = () => {
-    toast.success(t('booking.reservationConfirmed') || 'Reserva confirmada! Pode pagar mais tarde.');
-    onClose();
-    navigate('/my-reservations');
+  const handlePayLater = async () => {
+    if (!reservationId) return;
+
+    try {
+      // Fetch reservation data
+      const { data: reservation, error: fetchError } = await supabase
+        .from('reservations')
+        .select('*')
+        .eq('id', reservationId)
+        .single();
+
+      if (fetchError || !reservation) {
+        console.error('Error fetching reservation:', fetchError);
+        toast.error('Erro ao processar reserva');
+        return;
+      }
+
+      // Send pending payment email
+      const { error: emailError } = await supabase.functions.invoke('send-pending-payment-email', {
+        body: {
+          reservationId: reservation.id,
+          reservationNumber: reservation.reservation_number,
+          guestName: reservation.guest_name,
+          guestEmail: reservation.guest_email,
+          roomName: reservation.room_name,
+          checkIn: reservation.check_in,
+          checkOut: reservation.check_out,
+          guests: reservation.guests,
+          nights: reservation.nights,
+          totalPrice: reservation.total_price,
+          specialRequests: reservation.special_requests
+        }
+      });
+
+      if (emailError) {
+        console.error('Error sending pending payment email:', emailError);
+        // Still proceed even if email fails
+      } else {
+        console.log('Pending payment email sent successfully');
+      }
+
+      toast.success(t('booking.reservationConfirmed') || 'Reserva confirmada! Verifique o seu email para completar o pagamento.');
+      onClose();
+      navigate('/my-reservations');
+    } catch (error) {
+      console.error('Error in handlePayLater:', error);
+      toast.success(t('booking.reservationConfirmed') || 'Reserva confirmada! Pode pagar mais tarde.');
+      onClose();
+      navigate('/my-reservations');
+    }
   };
 
   // SEO data for room

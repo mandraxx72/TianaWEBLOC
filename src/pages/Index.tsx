@@ -50,7 +50,6 @@ const Index = () => {
           onBookingClick={() => handleBookingClick()}
           title={siteContent.hero.title}
           subtitle={t('hero.subtitle')}
-
         />
         <AboutSection />
         <Rooms onBookingClick={() => handleBookingClick()} />

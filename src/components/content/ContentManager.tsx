@@ -5,10 +5,6 @@ interface SiteContent {
     title: string;
     subtitle: string;
     buttonText: string;
-    images?: Array<{
-      src: string;
-      alt: string;
-    }>;
   };
   about: {
     title: string;
@@ -52,8 +48,8 @@ export const siteContent: SiteContent = {
   },
   contact: {
     address: ["Alto São Nicolau", "Mindelo - S.Vicente"],
-    phone: ["5937127"],
-    email: "casatiana@gmail.com"
+    phone: ["+238 5937127"],
+    email: "info@casatiana.com"
   },
   social: {
     instagram: "https://instagram.com/casatiana",
@@ -68,11 +64,11 @@ export const getContent = (key: string, defaultValue: any = '') => {
   // For now, return from our static content
   const keys = key.split('.');
   let value = siteContent as any;
-  
+
   for (const k of keys) {
     value = value?.[k];
   }
-  
+
   return value || defaultValue;
 };
 

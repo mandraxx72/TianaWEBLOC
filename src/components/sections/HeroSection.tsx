@@ -51,7 +51,7 @@ const HeroSection = ({
         </video>
 
         {/* Dark Gradient Overlay for better text readability */}
-        <div className="absolute inset-0 bg-black/30 bg-gradient-to-b from-black/50 via-transparent to-black/50" />
+
 
         {/* Content Overlay */}
         <div className="absolute inset-0 flex flex-col items-center justify-center text-white px-4 text-center z-10">
